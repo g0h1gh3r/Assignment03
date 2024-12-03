@@ -13,3 +13,25 @@ function displayWeather(data) {
 }
 
 let weather = document.getElementById('weather-form')
+
+weather.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const city = document.getElementById('city').value
+
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+    )
+    const data = await response.json()
+
+    if (response.ok) {
+      displayWeather(data)
+    } else {
+      throw new Error('City not found')
+    }
+  } catch (error) {
+    document.getElementById('weather-info').innerHTML = `
+            <p class="error">${error.message}</p>
+        `
+  }
+})
