@@ -66,15 +66,21 @@ async function fetchWeather(city) {
     showError(error.message)
   }
 }
-// Function to display weather data
+// Display current weather
 function displayWeather(data) {
+  const unitSymbol = units === 'metric' ? '°C' : '°F'
   document.getElementById('weather-info').innerHTML = `
         <h2>${data.name}, ${data.sys.country}</h2>
         <div class="weather-details">
-            <p>Temperature: ${Math.round(data.main.temp)}°C</p>
+            <img src="http://openweathermap.org/img/w/${
+              data.weather[0].icon
+            }.png" alt="weather icon">
+            <p>Temperature: ${Math.round(data.main.temp)}${unitSymbol}</p>
             <p>Weather: ${data.weather[0].description}</p>
             <p>Humidity: ${data.main.humidity}%</p>
-            <p>Wind Speed: ${data.wind.speed} m/s</p>
+            <p>Wind Speed: ${data.wind.speed} ${
+    units === 'metric' ? 'm/s' : 'mph'
+  }</p>
         </div>
     `
 }
