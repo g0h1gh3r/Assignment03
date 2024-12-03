@@ -43,6 +43,29 @@ async function fetchWeatherByCoords(lat, lon) {
     showError(error.message)
   }
 }
+// Fetch weather by city name
+async function fetchWeather(city) {
+  try {
+    const current = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${units}`
+    )
+    const forecast = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=${units}`
+    )
+
+    const currentData = await current.json()
+    const forecastData = await forecast.json()
+
+    if (current.ok && forecast.ok) {
+      displayWeather(currentData)
+      displayForecast(forecastData)
+    } else {
+      throw new Error('City not found')
+    }
+  } catch (error) {
+    showError(error.message)
+  }
+}
 // Function to display weather data
 function displayWeather(data) {
   document.getElementById('weather-info').innerHTML = `
