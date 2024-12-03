@@ -85,6 +85,14 @@ function displayWeather(data) {
     `
 }
 
+// Show error message
+function showError(message) {
+  document.getElementById('weather-info').innerHTML = `
+        <p class="error">${message}</p>
+    `
+  document.getElementById('forecast').innerHTML = ''
+}
+
 // Display 5-day forecast
 function displayForecast(data) {
   const unitSymbol = units === 'metric' ? '°C' : '°F'
