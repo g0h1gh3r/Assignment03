@@ -1,3 +1,6 @@
+// Documentation reference: https://openweathermap.org/current
+// Documentation: https://openweathermap.org/api/one-call-api
+
 // API key from OpenWeatherMap
 const API_KEY = 'ab4599317c716661f0d19f450d91f994'
 // Function to display weather data
