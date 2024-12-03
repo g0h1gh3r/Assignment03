@@ -1,0 +1,19 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form {
+  margin: 20px 0;
+}
+
+input,
+button {
+  padding: 10px;
+  margin: 5px;
+}
+
+#weather-info {
+  margin-top: 20px;
+}
