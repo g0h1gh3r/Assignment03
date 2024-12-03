@@ -17,3 +17,12 @@ button {
 #weather-info {
   margin-top: 20px;
 }
+
+.forecast-day {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
