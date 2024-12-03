@@ -85,6 +85,29 @@ function displayWeather(data) {
     `
 }
 
+// Display 5-day forecast
+function displayForecast(data) {
+  const unitSymbol = units === 'metric' ? '°C' : '°F'
+  const dailyData = data.list.filter((item) => item.dt_txt.includes('12:00:00'))
+
+  const forecastHTML = dailyData
+    .map(
+      (day) => `
+        <div class="forecast-day">
+            <h3>${new Date(day.dt * 1000).toLocaleDateString()}</h3>
+            <img src="http://openweathermap.org/img/w/${
+              day.weather[0].icon
+            }.png" alt="weather icon">
+            <p>${Math.round(day.main.temp)}${unitSymbol}</p>
+            <p>${day.weather[0].description}</p>
+        </div>
+    `
+    )
+    .join('')
+
+  document.getElementById('forecast').innerHTML = forecastHTML
+}
+
 let weather = document.getElementById('weather-form')
 // Event listener for form submission
 weather.addEventListener('submit', async (e) => {
