@@ -3,6 +3,21 @@
 
 // API key from OpenWeatherMap
 const API_KEY = 'ab4599317c716661f0d19f450d91f994'
+// Set up the unit
+let units = 'metric'
+// Get user's location
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) =>
+        fetchWeatherByCoords(
+          position.coords.latitude,
+          position.coords.longitude
+        ),
+      (error) => console.error(error)
+    )
+  }
+}
 // Function to display weather data
 function displayWeather(data) {
   document.getElementById('weather-info').innerHTML = `
