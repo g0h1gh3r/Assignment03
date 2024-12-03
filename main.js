@@ -24,6 +24,25 @@ function toggleUnits() {
   const city = document.getElementById('city').value
   if (city) fetchWeather(city)
 }
+// Fetch weather by coordinates
+async function fetchWeatherByCoords(lat, lon) {
+  try {
+    const current = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
+    )
+    const forecast = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
+    )
+
+    const currentData = await current.json()
+    const forecastData = await forecast.json()
+
+    displayWeather(currentData)
+    displayForecast(forecastData)
+  } catch (error) {
+    showError(error.message)
+  }
+}
 // Function to display weather data
 function displayWeather(data) {
   document.getElementById('weather-info').innerHTML = `
