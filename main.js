@@ -18,6 +18,12 @@ function getLocation() {
     )
   }
 }
+// Toggle temperature units
+function toggleUnits() {
+  units = units === 'metric' ? 'imperial' : 'metric'
+  const city = document.getElementById('city').value
+  if (city) fetchWeather(city)
+}
 // Function to display weather data
 function displayWeather(data) {
   document.getElementById('weather-info').innerHTML = `
