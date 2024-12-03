@@ -11,3 +11,5 @@ function displayWeather(data) {
         </div>
     `
 }
+
+let weather = document.getElementById('weather-form')
